@@ -5,6 +5,25 @@
     <title>List of vets</title>
 </head>
 <body>
+<!--le decimos a IntelliJ que la propiedad vet es del tipo model.Vet-->
+<!--/*@thymesVar id="vet" type"com.milo.pet.clinic.model.Vet" */-->
     <h1 th:text="'List of vets'">Vets Index Page</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="vet : ${vets}">
+                <td th:text="vet.id">1</td>
+                <td th:text="vet.firstname">Paula</td>
+                <td th:text="vet.lastname">Romero</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
