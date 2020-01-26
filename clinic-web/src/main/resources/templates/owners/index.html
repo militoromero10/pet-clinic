@@ -5,6 +5,26 @@
     <title>List of Pet Owners</title>
 </head>
 <body>
+
+<!--le decimos a IntelliJ que a la propiedad owner sera del tipo model.Owner-->
+<!--/*@thymesVar id="owner" type="com.milo.pet.clinic.model.Owner"*/-->
     <h1 th:text="'List of Owner'">Owner List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="owner : ${owners}">
+                <td th:text="${owner.id}">1</td>
+                <td th:text="${owner.firstName}">Camilo</td>
+                <td th:text="${owner.lastName}">Romero</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
