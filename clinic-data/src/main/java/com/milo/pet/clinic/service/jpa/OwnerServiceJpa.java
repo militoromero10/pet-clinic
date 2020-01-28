@@ -11,11 +11,11 @@ import java.util.Set;
 
 @Service
 @Profile("jpa")
-public class OwnerJpaService implements OwnerService {
+public class OwnerServiceJpa implements OwnerService {
 
     private final OwnerRepository ownerRepository;
 
-    public OwnerJpaService(OwnerRepository ownerRepository) {
+    public OwnerServiceJpa(OwnerRepository ownerRepository) {
         this.ownerRepository = ownerRepository;
     }
 
