@@ -4,7 +4,7 @@
 
     <groupId>com.milo.pet</groupId>
     <artifactId>clinic</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6-SNAPSHOT</version>
 
     <modules>
         <module>clinic-data</module>
@@ -48,7 +48,7 @@
 
     <scm>
         <developerConnection>scm:git:https://github.com/militoromero10/pet-clinic.git</developerConnection>
-      <tag>clinic-0.0.5</tag>
+      <tag>HEAD</tag>
   </scm>
 
 </project>
