@@ -9,7 +9,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>clinic-data</artifactId>
-    <packaging>pom</packaging>
     <properties>
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
     </properties>
@@ -54,9 +53,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <!-- para no crear otro JAR (al parece el data), solo
-                         queremos un JAR con nuestras clases dentro de este modulo
-                         para no reempaquetar el data.jar-->
                         <goals>
                             <goal>repackage</goal>
                         </goals>
