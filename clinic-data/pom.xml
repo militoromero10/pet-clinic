@@ -9,6 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>clinic-data</artifactId>
+    <packaging>pom</packaging>
     <properties>
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
     </properties>
