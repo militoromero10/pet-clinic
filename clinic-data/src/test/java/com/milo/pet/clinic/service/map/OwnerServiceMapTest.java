@@ -3,11 +3,14 @@ package com.milo.pet.clinic.service.map;
 import com.milo.pet.clinic.model.Owner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ExtendWith(MockitoExtension.class)
 class OwnerServiceMapTest {
 
     private static final long ID = 1L;
