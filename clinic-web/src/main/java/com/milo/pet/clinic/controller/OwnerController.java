@@ -6,12 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +61,41 @@ public class OwnerController {
         ModelAndView mav = new ModelAndView("owners/ownerDetails");
         mav.addObject(ownerService.findById(ownerId));
         return mav;
+    }
+
+    @GetMapping("/new")
+    public String createOwnerForm(Model model) {
+        model.addAttribute("owner", Owner.builder().build());
+        return "owners/createOrUpdateOwnerForm";
+    }
+
+    @PostMapping("/new")
+    public String createOwner(@Valid Owner owner, BindingResult result) {
+        if(result.hasErrors()){
+            return "owners/createOrUpdateOwnerForm";
+        } else {
+            Owner ownerSaved = ownerService.save(owner);
+            return "redirect:/owners/"+ownerSaved.getId();
+        }
+    }
+
+    @GetMapping("/{ownerId}/edit")
+    public String updateOwnerForm(@PathVariable String ownerId,  Model model) {
+        model.addAttribute("owner", ownerService.findById(Long.parseLong(ownerId)));
+        return "owners/createOrUpdateOwnerForm";
+    }
+
+    @PostMapping("/{ownerId}/edit")
+    public String updateOwner(@Valid Owner owner, BindingResult result, @PathVariable String ownerId) {
+
+        if(result.hasErrors()){
+            return "owners/createOrUpdateOwnerForm";
+        } else {
+            owner.setId(Long.parseLong(ownerId));
+            Owner owner1 = ownerService.save(owner);
+            return "redirect:/owners/"+owner1.getId();
+        }
+
     }
 
 }
