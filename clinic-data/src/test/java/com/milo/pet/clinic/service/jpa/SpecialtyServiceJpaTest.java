@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -59,11 +60,17 @@ class SpecialtyServiceJpaTest {
     @DisplayName("BDD Example")
     @Test
     void findByIdBddTest() {
+        //given
         Specialty specialty = new Specialty();
         given(repository.findById(anyLong())).willReturn(Optional.of(specialty));
+
+        //when
         Specialty specialtyReturned =  service.findById(anyLong());
+
+        //then
         assertThat(specialtyReturned).isNotNull();
-        verify(repository).findById(anyLong());
+        then(repository).should().findById(anyLong());
+        then(repository).shouldHaveNoMoreInteractions();
     }
 
     @Test
