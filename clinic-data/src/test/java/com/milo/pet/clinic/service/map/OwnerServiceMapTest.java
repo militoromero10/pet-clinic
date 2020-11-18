@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class OwnerServiceMapTest {
 
-    private static final long ID = 1L;
+    private static final Long ID = 1L;
     private static final String lastName = "Romero";
     private OwnerServiceMap ownerServiceMap;
 
@@ -37,7 +37,7 @@ class OwnerServiceMapTest {
 
     @Test
     void saveExistingId() {
-        long id = 2L;
+        Long id = 2L;
         Owner owner2 = Owner.builder().id(id).build();
         Owner savedOwner = ownerServiceMap.save(owner2);
         assertEquals(id,savedOwner.getId());

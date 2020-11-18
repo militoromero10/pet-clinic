@@ -24,7 +24,7 @@ public class OwnerController {
     }
 
     @InitBinder
-    public void ñsetAllowedFields(WebDataBinder dataBinder) {
+    public void setAllowedFields(WebDataBinder dataBinder) {
         //buenas practicas para evitar manipular campos en formulario
         dataBinder.setDisallowedFields("id");
     }

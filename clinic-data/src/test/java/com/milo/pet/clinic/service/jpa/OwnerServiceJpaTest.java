@@ -9,10 +9,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -20,7 +19,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class OwnerServiceJpaTest {
 
-    public static final long ID = 1L;
+    public static final Long ID = 1L;
     public static final String LASTNAME = "Romero";
     @Mock
     OwnerRepository ownerRepository;
@@ -41,6 +40,22 @@ class OwnerServiceJpaTest {
         Owner loaded = ownerServiceJpa.findByLastName(LASTNAME);
         assertEquals(LASTNAME, loaded.getLastName());
         verify(ownerRepository).findByLastName(any());
+    }
+
+    @Test
+    void findAllByLastNameLike(){
+        List<Owner> owners = new ArrayList<>();
+        owners.add(new Owner());
+
+        when(ownerRepository.findAllByLastNameLike(anyString())).thenReturn(owners);
+        List<Owner> listOwners = ownerServiceJpa.findAllByLastNameLike(anyString());
+
+        assertThat(listOwners).isNotNull();
+        assertThat(listOwners).isNotEmpty();
+        assertThat(listOwners).hasSize(1);
+
+        verify(ownerRepository).findAllByLastNameLike(anyString());
+
     }
 
     @Test
