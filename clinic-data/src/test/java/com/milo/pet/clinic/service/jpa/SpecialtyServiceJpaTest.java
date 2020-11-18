@@ -3,6 +3,7 @@ package com.milo.pet.clinic.service.jpa;
 import com.milo.pet.clinic.model.Specialty;
 import com.milo.pet.clinic.respository.SpecialtyRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -49,6 +51,16 @@ class SpecialtyServiceJpaTest {
     void findById() {
         Specialty specialty = new Specialty();
         when(repository.findById(anyLong())).thenReturn(Optional.of(specialty));
+        Specialty specialtyReturned =  service.findById(anyLong());
+        assertThat(specialtyReturned).isNotNull();
+        verify(repository).findById(anyLong());
+    }
+
+    @DisplayName("BDD Example")
+    @Test
+    void findByIdBddTest() {
+        Specialty specialty = new Specialty();
+        given(repository.findById(anyLong())).willReturn(Optional.of(specialty));
         Specialty specialtyReturned =  service.findById(anyLong());
         assertThat(specialtyReturned).isNotNull();
         verify(repository).findById(anyLong());
